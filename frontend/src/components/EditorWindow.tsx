@@ -38,7 +38,7 @@ export default function EditorWindow({ fileName, theme }: EditorWindowProps) {
     const file = files[fileName];
     const editorRef = useRef<any>(null);
 
-    function handleEditorDidMount(editor: any, monaco: any) {
+    function handleEditorDidMount(editor: any) {
         editorRef.current = editor;
     }
 
@@ -51,7 +51,7 @@ export default function EditorWindow({ fileName, theme }: EditorWindowProps) {
             <button onClick={getEditorValue}>Get Editor Value</button>
             <Editor 
                 height="100%" 
-                width="75%" 
+                width="100%" 
                 theme={theme} 
                 path={file.name}
                 defaultLanguage={file.language}

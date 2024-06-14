@@ -1,4 +1,10 @@
 body {
   padding: 0;
   margin: 0;
+  background-color: darkgray;
+}
+
+.content {
+  width: 100vw;
+  display: flex;
 }

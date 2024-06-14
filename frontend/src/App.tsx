@@ -1,5 +1,6 @@
-import EditorWindow from './components/EditorWindow'
 import { useState } from 'react'
+import EditorWindow from './components/EditorWindow'
+import TestCases from './components/TestCases'
 import Options from './components/Options'
 import './App.css'
 
@@ -10,7 +11,10 @@ function App() {
   return (
     <>
       <Options setFileName={setFileName} setTheme={setTheme} />
-      <EditorWindow fileName={fileName} theme={theme} />
+      <div className="content">
+        <EditorWindow fileName={fileName} theme={theme} />
+        <TestCases />
+      </div>
     </>
   )
 }
