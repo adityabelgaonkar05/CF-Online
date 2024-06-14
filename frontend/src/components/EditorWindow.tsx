@@ -42,13 +42,32 @@ export default function EditorWindow({ fileName, theme }: EditorWindowProps) {
         editorRef.current = editor;
     }
 
-    function getEditorValue() {
-        alert(editorRef.current.getValue());
-    }
+    async function codeCompile() {
+        const editorValue = editorRef.current.getValue();
+    
+        try {
+            const response = await fetch('http://localhost:3000/backendapi', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ value: editorValue }),
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to send editor value to backend');
+            }
+    
+            // Handle success if needed
+            console.log('Editor value sent successfully');
+        } catch (error) {
+            console.error('Error sending editor value to backend:', error);
+        }
+    }    
 
     return (
         <div className='editor-window'>
-            <button onClick={getEditorValue}>Get Editor Value</button>
+            <button onClick={codeCompile}>Compile</button>
             <Editor 
                 height="100%" 
                 width="100%" 
