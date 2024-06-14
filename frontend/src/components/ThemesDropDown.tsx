@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export default function ThemesDropDown() {
+interface ThemesDropDownProps {
+    setTheme: (theme: string) => void;
+}
+
+export default function ThemesDropDown({ setTheme }: ThemesDropDownProps) {
     const [header, setHeader] = useState<string>("Dark");
     const [open, setOpen] = useState<boolean>(false);
 
@@ -12,8 +16,10 @@ export default function ThemesDropDown() {
         return () => {
             if (number === 1) {
                 setHeader("Dark");
+                setTheme("vs-dark");
             } else {
                 setHeader("Light");
+                setTheme("vs-light");
             }
 
             setOpen(false);

@@ -2,11 +2,16 @@ import LanguageDropDown from "./LanguageDropDown"
 import ThemesDropDown from "./ThemesDropDown"
 import "../styles/Options.scss"
 
-export default function Options() {
+interface OptionsProps {
+    setFileName: (fileName: string) => void;
+    setTheme: (theme: string) => void;
+}
+
+export default function Options({ setFileName, setTheme }: OptionsProps) {
     return (
         <div className="options-container">
-            <LanguageDropDown />
-            <ThemesDropDown />
+            <LanguageDropDown setFileName={setFileName}/>
+            <ThemesDropDown setTheme={setTheme} />
         </div>
     )
 }

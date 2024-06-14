@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef } from 'react';
 import { Editor } from '@monaco-editor/react'
 import '../styles/EditorWindow.scss'
 
@@ -28,12 +28,27 @@ const files: Record<string, File> =  {
     },
 }
 
-export default function EditorWindow() {
-    const [fileName, setFileName] = useState<string>("script.java");
+interface EditorWindowProps {
+    fileName: string;
+    theme: string;
+}
+
+
+export default function EditorWindow({ fileName, theme }: EditorWindowProps) {
     const file = files[fileName];
-    const theme = "vs-dark";
+    const editorRef = useRef<any>(null);
+
+    function handleEditorDidMount(editor: any, monaco: any) {
+        editorRef.current = editor;
+    }
+
+    function getEditorValue() {
+        alert(editorRef.current.getValue());
+    }
+
     return (
         <div className='editor-window'>
+            <button onClick={getEditorValue}>Get Editor Value</button>
             <Editor 
                 height="100%" 
                 width="75%" 
@@ -41,6 +56,7 @@ export default function EditorWindow() {
                 path={file.name}
                 defaultLanguage={file.language}
                 defaultValue={file.value}
+                onMount={handleEditorDidMount}
             />
         </div>
     )

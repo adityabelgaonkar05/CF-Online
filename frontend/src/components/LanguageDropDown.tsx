@@ -1,7 +1,11 @@
 import { useState } from "react";
 import "../styles/LanguageDropDown.scss";
 
-export default function LanguageDropDown() {
+interface LanguageDropDownProps {
+    setFileName: (fileName: string) => void;
+}
+
+export default function LanguageDropDown({ setFileName }: LanguageDropDownProps) {
     const [header, setHeader] = useState<string>("C++");
     const [open, setOpen] = useState<boolean>(false);
 
@@ -11,15 +15,18 @@ export default function LanguageDropDown() {
 
     function handleClick(number: number) {
         return () => {
+            setOpen(!open);
+
             if (number === 1) {
                 setHeader("C++");
+                setFileName("script.cpp");
             } else if (number === 2) {
                 setHeader("Java");
+                setFileName("script.java");
             } else {
                 setHeader("Python");
+                setFileName("script.py");
             }
-
-            setOpen(false);
         }
     }
 
