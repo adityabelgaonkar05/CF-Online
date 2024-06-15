@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/TestCases.scss";
 
-export default function TestCases({url, setUrl} : {url: string, setUrl: (url: string) => void}) {
+export default function TestCases({url, setUrl, cassesPassed, carryOutput} : {url: string, setUrl: (url: string) => void, cassesPassed: number, carryOutput: string}) {
     const [testCases, setTestCases] = useState<Array<[string, string]> | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -43,10 +43,24 @@ export default function TestCases({url, setUrl} : {url: string, setUrl: (url: st
                                 <h4>Input</h4>
                                 <pre>{testCase[0]}</pre>
                             </div>
-                            <div className="output">
-                                <h4>Output</h4>
-                                <pre>{testCase[1]}</pre>
-                            </div>
+                            { cassesPassed === 1 ? (
+                                <img src='/tickicon.png' alt="Passed" height={80} />
+                            ) : cassesPassed === 2 ? (
+                                <div className="output">
+                                    <h4>Output</h4>
+                                    <pre>
+                                        <img src="/loadinggif.gif" alt="Loading" height={80} />
+                                    </pre>
+                                </div>
+                            ) : (
+                                <div className="output">
+                                    <h4>Output</h4>
+                                    <pre>
+                                        <span>{carryOutput}</span>
+                                        <img src="/crossicon.png" alt="Failed" height={40} />
+                                    </pre>
+                                </div>
+                            ) }
                         </div>
                     ))
                 )}

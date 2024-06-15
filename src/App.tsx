@@ -8,13 +8,15 @@ function App() {
   const [fileName, setFileName] = useState("script.cpp");
   const [theme, setTheme] = useState<string>("vs-dark");
   const [url, setUrl] = useState<string>('');
+  const [casesPassed, setCasesPassed] = useState<number>(0);
+  const [carryOutput, carryOverOutput] = useState<string>('');
 
   return (
     <>
       <Options setFileName={setFileName} setTheme={setTheme} />
       <div className="content">
-        <EditorWindow fileName={fileName} theme={theme} url={url} />
-        <TestCases url={url} setUrl={setUrl} />
+        <EditorWindow fileName={fileName} theme={theme} url={url} setCasesPassed={setCasesPassed} carryOverOutput={carryOverOutput} />
+        <TestCases url={url} setUrl={setUrl} cassesPassed={casesPassed} carryOutput={carryOutput} />
       </div>
     </>
   )
