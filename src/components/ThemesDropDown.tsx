@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "../styles/ThemesDropDown.scss";
 interface ThemesDropDownProps {
     setTheme: (theme: string) => void;
 }

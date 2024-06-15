@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Editor } from '@monaco-editor/react'
 import '../styles/EditorWindow.scss'
 
@@ -37,40 +37,32 @@ interface EditorWindowProps {
 export default function EditorWindow({ fileName, theme }: EditorWindowProps) {
     const file = files[fileName];
     const editorRef = useRef<any>(null);
+    const [data, setData] = useState(null);
 
     function handleEditorDidMount(editor: any) {
         editorRef.current = editor;
     }
 
-    async function codeCompile() {
-        const editorValue = editorRef.current.getValue();
-    
-        try {
-            const response = await fetch('http://localhost:3000/backendapi', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ value: editorValue }),
-            });
-    
-            if (!response.ok) {
-                throw new Error('Failed to send editor value to backend');
-            }
-    
-            // Handle success if needed
-            console.log('Editor value sent successfully');
-        } catch (error) {
-            console.error('Error sending editor value to backend:', error);
-        }
-    }    
+    function getEditorValue() {
+        alert(editorRef.current.getValue());
+    }
+
+    useEffect(() => {
+        fetch('http://localhost:3000/api')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setData(data);
+            })
+            .catch(err => console.log(err));
+    });   
 
     return (
         <div className='editor-window'>
-            <button onClick={codeCompile}>Compile</button>
+            <button onClick={getEditorValue}>Compile</button>
             <Editor 
-                height="100%" 
-                width="100%" 
+                height="95vh" 
+                width="75vw" 
                 theme={theme} 
                 path={file.name}
                 defaultLanguage={file.language}
