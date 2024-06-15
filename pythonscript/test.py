@@ -1,10 +1,6 @@
-from flask import Flask, jsonify
-from flask_cors import CORS
 import requests
 from bs4 import BeautifulSoup
-
-app = Flask(__name__)
-CORS(app)
+import json
 
 def get_test_cases(url):
     response = requests.get(url)
@@ -24,12 +20,10 @@ def get_test_cases(url):
         "output": output_data.strip()
     }
 
-
-@app.route('/test-cases', methods=['GET'])
-def test_cases():
+def main():
     url = 'https://codeforces.com/problemset/problem/1985/A'
     test_cases = get_test_cases(url)
-    return jsonify(test_cases)
+    print(json.dumps(test_cases, indent=4))
 
 if __name__ == "__main__":
-    app.run(port=5000)
+    main()
