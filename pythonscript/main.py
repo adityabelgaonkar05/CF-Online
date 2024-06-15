@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
 from bs4 import BeautifulSoup
@@ -24,12 +24,14 @@ def get_test_cases(url):
         "output": output_data.strip()
     }
 
-
-@app.route('/test-cases', methods=['GET'])
+@app.route('/test-cases', methods=['POST'])
 def test_cases():
-    url = 'https://codeforces.com/problemset/problem/1985/A'
+    data = request.json
+    url = data.get('url')
+    if not url:
+        return jsonify({"error": "URL is required"}), 400
     test_cases = get_test_cases(url)
     return jsonify(test_cases)
 
 if __name__ == "__main__":
-    app.run(port=5000)
+    app.run(port=5000, debug=True)

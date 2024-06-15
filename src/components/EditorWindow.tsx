@@ -87,6 +87,7 @@ export default function EditorWindow({ fileName, theme }: EditorWindowProps) {
         try {
             const response = await axios(config);
             const apiOutput = response.data.output.trim();
+            console.log(apiOutput);
             const formattedOutput = apiOutput.replace(/\\n/g, '\n');
             setOutput(formattedOutput);
             console.log('Output from API:', apiOutput);
