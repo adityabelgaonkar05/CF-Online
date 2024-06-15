@@ -1,7 +1,8 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { Editor } from '@monaco-editor/react';
 import axios from 'axios';
 import '../styles/EditorWindow.scss';
+import { postRequest } from '../utilities/generalServices';
 
 interface File {
     name: string;
@@ -35,26 +36,27 @@ const files: Record<string, File> = {
 interface EditorWindowProps {
     fileName: string;
     theme: string;
+    url: string;
 }
 
-export default function EditorWindow({ fileName, theme }: EditorWindowProps) {
+export default function EditorWindow({ fileName, theme, url }: EditorWindowProps) {
     const file = files[fileName];
     const editorRef = useRef<any>(null);
     const [output, setOutput] = useState<string>('');
-    const [testCases, setTestCases] = useState<TestCase | null>(null);
+    const [testCases, setTestCases] = useState<TestCase>({ input: '', output: '' });
 
-    useEffect(() => {
-        async function fetchTestCases() {
+    // useEffect(() => {
+        async function fetchTestCases( url: string) {
             try {
-                const response = await axios.get('http://localhost:5000/test-cases');
-                setTestCases(response.data);
+                const response = await postRequest('/test-cases', { url: url });
+                setTestCases({"input" : response.data["input"], "output" : response.data["output"]});
             } catch (error) {
                 console.error('Error fetching test cases:', error);
-            }
-        }
+            }   
 
-        fetchTestCases();
-    }, []);
+            console.log(testCases);
+        }
+    // }, []);
 
     function handleEditorDidMount(editor: any) {
         editorRef.current = editor;
@@ -63,6 +65,8 @@ export default function EditorWindow({ fileName, theme }: EditorWindowProps) {
     async function getEditorValue() {
         const code = editorRef.current.getValue();
         const language = file.language;
+
+        fetchTestCases(url)
 
         if (!testCases) {
             console.error('Test cases not available');
@@ -83,6 +87,8 @@ export default function EditorWindow({ fileName, theme }: EditorWindowProps) {
             },
             data: data.toString()
         };
+
+        console.log(data.toString());
 
         try {
             const response = await axios(config);

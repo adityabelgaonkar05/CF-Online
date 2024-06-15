@@ -1,8 +1,8 @@
 import { useState } from "react";
+import "../styles/TestCases.scss";
 
-export default function TestCases() {
+export default function TestCases({url, setUrl} : {url: string, setUrl: (url: string) => void}) {
     const [testCases, setTestCases] = useState<Array<[string, string]> | null>(null);
-    const [url, setUrl] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
 
     const fetchTestCases = async () => {
