@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = 'http://localhost:5000';
+const baseURL = 'https://cf-online-fetchtestcases.vercel.app';
 
 const axiosInstance = axios.create({
   baseURL: baseURL,
