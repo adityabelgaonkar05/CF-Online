@@ -148,6 +148,7 @@ export default function EditorWindow({ fileName, theme, url, setCasesPassed, car
             console.error(error);
             setOutput('An error occurred while compiling the code.');
             console.log(testCases);
+            console.log(output);
         }
     }
     
