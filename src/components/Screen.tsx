@@ -6,7 +6,7 @@ import '../styles/Screen.scss'
 
 function App() {
   const [fileName, setFileName] = useState("script.cpp");
-  const [theme, setTheme] = useState<string>("myTheme");
+  const [theme, setTheme] = useState<string>("myThemeDark");
   const [url, setUrl] = useState<string>('');
   const [casesPassed, setCasesPassed] = useState<number>(0);
   const [carryOutput, carryOverOutput] = useState<string>('');

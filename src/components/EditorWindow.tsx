@@ -5,40 +5,77 @@ import '../styles/EditorWindow.scss';
 import { postRequest } from '../utilities/generalServices';
 
 loader.init().then((monaco) => {
-    monaco.editor.defineTheme('myTheme', {
-        base: 'vs', // Use 'vs' for a light theme base, or 'vs-dark' for dark
-        inherit: true, // Inherit rules from the base theme
+    monaco.editor.defineTheme('myThemeDark', {
+        base: 'vs-dark',
+        inherit: true,
         rules: [
-            { token: '', foreground: 'D4D4D4' }, // Default text color
-            { token: 'comment', foreground: '6A9955', fontStyle: 'italic' }, // Comments in green and italic
-            { token: 'keyword', foreground: '569CD6' }, // Keywords in blue
-            { token: 'string', foreground: 'CE9178' }, // Strings in brownish color
-            { token: 'number', foreground: 'B5CEA8' }, // Numbers in light green
-            { token: 'type', foreground: '4EC9B0' }, // Types in teal
-            { token: 'variable', foreground: '9CDCFE' }, // Variables in light blue
-            { token: 'function', foreground: 'DCDCAA' }, // Functions in yellow
-            { token: 'identifier', foreground: '9CDCFE' }, // Identifiers in light blue
-            { token: 'operator', foreground: 'C586C0' }, // Operators in pink
-            { token: 'delimiter', foreground: 'C586C0' }, // Delimiters in pink
-            { token: 'delimiter.bracket', foreground: 'D4D4D4' }, // Brackets in default text color
-            { token: 'delimiter.parenthesis', foreground: 'D4D4D4' }, // Parentheses in default text color
-            { token: 'delimiter.square', foreground: 'D4D4D4' }, // Square brackets in default text color
-            { token: 'delimiter.curly', foreground: 'D4D4D4' }, // Curly brackets in default text color
-            { token: 'tag', foreground: '569CD6' }, // Tags in blue
-            { token: 'attribute.name', foreground: '9CDCFE' }, // Attribute names in light blue
-            // Add more rules as needed for other tokens
+            { token: '', foreground: 'E8E8E8', fontStyle: 'bold' },
+            { token: 'comment', foreground: '87A96B', fontStyle: 'italic bold' },
+            { token: 'keyword', foreground: '80BFFF', fontStyle: 'bold' },
+            { token: 'string', foreground: 'F0A988', fontStyle: 'bold' },
+            { token: 'number', foreground: 'C8F0B0', fontStyle: 'bold' },
+            { token: 'type', foreground: '76E3D0', fontStyle: 'bold' },
+            { token: 'variable', foreground: 'A9E8FF', fontStyle: 'bold' },
+            { token: 'function', foreground: 'FFEAA3', fontStyle: 'bold' },
+            { token: 'identifier', foreground: 'A9E8FF', fontStyle: 'bold' },
+            { token: 'operator', foreground: 'DDA0DD', fontStyle: 'bold' },
+            { token: 'delimiter', foreground: 'DDA0DD', fontStyle: 'bold' },
+            { token: 'delimiter.bracket', foreground: 'E8E8E8', fontStyle: 'bold' },
+            { token: 'delimiter.parenthesis', foreground: 'E8E8E8', fontStyle: 'bold' },
+            { token: 'delimiter.square', foreground: 'E8E8E8', fontStyle: 'bold' },
+            { token: 'delimiter.curly', foreground: 'E8E8E8', fontStyle: 'bold' },
+            { token: 'tag', foreground: '80BFFF', fontStyle: 'bold' },
+            { token: 'attribute.name', foreground: 'A9E8FF', fontStyle: 'bold' },
         ],
         colors: {
-            'editor.background': '#072432', // Background color
-            'editor.foreground': '#D4D4D4', // Default text color
-            'editorCursor.foreground': '#FFCC00', // Cursor color in yellow
-            'editorLineNumber.foreground': '#858585', // Line numbers in gray
-            'editorLineNumber.activeForeground': '#FFFFFF', // Active line number in white
-            'editor.selectionBackground': '#264F78', // Selection background
-            'editor.inactiveSelectionBackground': '#3A3D41', // Inactive selection background
-            'editorIndentGuide.background': '#404040', // Indent guide in dark gray
-            'editorIndentGuide.activeBackground': '#707070', // Active indent guide in light gray
-            'editorLineHighlightBackground': '#333333', // Current line highlight background
+            'editor.background': '#072432',
+            'editor.foreground': '#E8E8E8',
+            'editorCursor.foreground': '#FFCC00',
+            'editorLineNumber.foreground': '#858585',
+            'editorLineNumber.activeForeground': '#FFFFFF',
+            'editor.selectionBackground': '#264F78',
+            'editor.inactiveSelectionBackground': '#3A3D41',
+            'editorIndentGuide.background': '#404040',
+            'editorIndentGuide.activeBackground': '#707070',
+            'editorLineHighlightBackground': '#333333',
+        }
+    });
+});
+
+loader.init().then((monaco) => {
+    monaco.editor.defineTheme('myThemeLight', {
+        base: 'vs',
+        inherit: true,
+        rules: [
+            { token: '', foreground: '000000', fontStyle: 'bold' },
+            { token: 'comment', foreground: '008000', fontStyle: 'italic bold' },
+            { token: 'keyword', foreground: '#0A4970', fontStyle: 'bold' },
+            { token: 'string', foreground: 'A31515', fontStyle: 'bold' },
+            { token: 'number', foreground: '098658', fontStyle: 'bold' },
+            { token: 'type', foreground: '267f99', fontStyle: 'bold' },
+            { token: 'variable', foreground: '001080', fontStyle: 'bold' },
+            { token: 'function', foreground: '795E26', fontStyle: 'bold' },
+            { token: 'identifier', foreground: '001080', fontStyle: 'bold' },
+            { token: 'operator', foreground: '000000', fontStyle: 'bold' },
+            { token: 'delimiter', foreground: '000000', fontStyle: 'bold' },
+            { token: 'delimiter.bracket', foreground: '000000', fontStyle: 'bold' },
+            { token: 'delimiter.parenthesis', foreground: '000000', fontStyle: 'bold' },
+            { token: 'delimiter.square', foreground: '000000', fontStyle: 'bold' },
+            { token: 'delimiter.curly', foreground: '000000', fontStyle: 'bold' },
+            { token: 'tag', foreground: '800000', fontStyle: 'bold' },
+            { token: 'attribute.name', foreground: 'FF0000', fontStyle: 'bold' },
+        ],
+        colors: {
+            'editor.background': '#E1EFF1',
+            'editor.foreground': '#000000',
+            'editorCursor.foreground': '#000000',
+            'editorLineNumber.foreground': '#2B91AF',
+            'editorLineNumber.activeForeground': '#007ACC',
+            'editor.selectionBackground': '#ADD6FF',
+            'editor.inactiveSelectionBackground': '#B4CDE6',
+            'editorIndentGuide.background': '#C8C8C8',
+            'editorIndentGuide.activeBackground': '#A0A0A0',
+            'editorLineHighlightBackground': '#D3D3D3',
         }
     });
 });

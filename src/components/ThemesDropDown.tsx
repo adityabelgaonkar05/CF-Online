@@ -16,10 +16,10 @@ export default function ThemesDropDown({ setTheme }: ThemesDropDownProps) {
         return () => {
             if (number === 1) {
                 setHeader("Dark");
-                setTheme("vs-dark");
+                setTheme("myThemeDark");
             } else {
                 setHeader("Light");
-                setTheme("vs-light");
+                setTheme("myThemeLight");
             }
 
             setOpen(false);
