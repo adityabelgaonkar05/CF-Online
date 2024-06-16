@@ -8,7 +8,7 @@ export default function TestCases({url, setUrl, cassesPassed, carryOutput} : {ur
     const fetchTestCases = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://cf-online-fetchtestcases.vercel.app/test-cases', {
+            const response = await fetch('http://localhost:5000/test-cases', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -61,6 +61,12 @@ export default function TestCases({url, setUrl, cassesPassed, carryOutput} : {ur
                                     </pre>
                                 </div>
                             ) }
+                            <div className="output">
+                                <h4>Expected Output</h4>
+                                <pre>
+                                    {testCase[1]}
+                                </pre>
+                            </div>
                         </div>
                     ))
                 )}

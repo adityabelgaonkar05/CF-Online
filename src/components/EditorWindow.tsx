@@ -69,7 +69,6 @@ export default function EditorWindow({ fileName, theme, url, setCasesPassed, car
     async function getEditorValue() {
         const code = editorRef.current.getValue();
         const language = file.language;
-        console.log(testCases);
         setCasesPassed(2);
 
         try {
