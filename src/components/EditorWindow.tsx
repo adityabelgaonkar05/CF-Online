@@ -1,8 +1,47 @@
 import { useRef, useState } from 'react';
-import { Editor } from '@monaco-editor/react';
+import { Editor, loader } from '@monaco-editor/react';
 import axios from 'axios';
 import '../styles/EditorWindow.scss';
 import { postRequest } from '../utilities/generalServices';
+
+loader.init().then((monaco) => {
+    monaco.editor.defineTheme('myTheme', {
+        base: 'vs', // Use 'vs' for a light theme base, or 'vs-dark' for dark
+        inherit: true, // Inherit rules from the base theme
+        rules: [
+            { token: '', foreground: 'D4D4D4' }, // Default text color
+            { token: 'comment', foreground: '6A9955', fontStyle: 'italic' }, // Comments in green and italic
+            { token: 'keyword', foreground: '569CD6' }, // Keywords in blue
+            { token: 'string', foreground: 'CE9178' }, // Strings in brownish color
+            { token: 'number', foreground: 'B5CEA8' }, // Numbers in light green
+            { token: 'type', foreground: '4EC9B0' }, // Types in teal
+            { token: 'variable', foreground: '9CDCFE' }, // Variables in light blue
+            { token: 'function', foreground: 'DCDCAA' }, // Functions in yellow
+            { token: 'identifier', foreground: '9CDCFE' }, // Identifiers in light blue
+            { token: 'operator', foreground: 'C586C0' }, // Operators in pink
+            { token: 'delimiter', foreground: 'C586C0' }, // Delimiters in pink
+            { token: 'delimiter.bracket', foreground: 'D4D4D4' }, // Brackets in default text color
+            { token: 'delimiter.parenthesis', foreground: 'D4D4D4' }, // Parentheses in default text color
+            { token: 'delimiter.square', foreground: 'D4D4D4' }, // Square brackets in default text color
+            { token: 'delimiter.curly', foreground: 'D4D4D4' }, // Curly brackets in default text color
+            { token: 'tag', foreground: '569CD6' }, // Tags in blue
+            { token: 'attribute.name', foreground: '9CDCFE' }, // Attribute names in light blue
+            // Add more rules as needed for other tokens
+        ],
+        colors: {
+            'editor.background': '#072432', // Background color
+            'editor.foreground': '#D4D4D4', // Default text color
+            'editorCursor.foreground': '#FFCC00', // Cursor color in yellow
+            'editorLineNumber.foreground': '#858585', // Line numbers in gray
+            'editorLineNumber.activeForeground': '#FFFFFF', // Active line number in white
+            'editor.selectionBackground': '#264F78', // Selection background
+            'editor.inactiveSelectionBackground': '#3A3D41', // Inactive selection background
+            'editorIndentGuide.background': '#404040', // Indent guide in dark gray
+            'editorIndentGuide.activeBackground': '#707070', // Active indent guide in light gray
+            'editorLineHighlightBackground': '#333333', // Current line highlight background
+        }
+    });
+});
 
 interface File {
     name: string;
@@ -19,12 +58,13 @@ const files: Record<string, File> = {
     "script.py": {
         name: "script.py",
         language: "python",
-        value: "#Happy coding!",
+        value: "#Happy coding!"
+,
     },
     "script.cpp": {
         name: "script.cpp",
         language: "cpp",
-        value: "//Happy coding!",
+        value: "#include <bits/stdc++.h>\n#define int long long\nusing namespace std;\n\nsigned main() \n{\n    int t; cin >> t;\n    while(t--)\n    {\n         \n    }\n}\n",
     },
     "script.java": {
         name: "script.java",
@@ -115,7 +155,7 @@ export default function EditorWindow({ fileName, theme, url, setCasesPassed, car
         <div className='editor-window'>
             <button onClick={getEditorValue}>Compile</button>
             <Editor 
-                height="90vh" 
+                height="85vh" 
                 width="75vw" 
                 theme={theme} 
                 path={file.name}

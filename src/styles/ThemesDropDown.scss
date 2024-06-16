@@ -4,24 +4,30 @@
     
     .dropbtn {
         border-radius: 3px;
-        min-width: 5rem;
+        min-width: 9rem;
+        background-color: #253745;
     }
 
     .dropdown-content-hidden { 
         display: none; 
+        transition: all 0.3s ease-in-out;
     }
 
     .dropdown-content {
         display: flex;
         flex-direction: column;
         position: absolute;
-        background-color: #f9f9f9;
         min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
         z-index: 1;
+        transition: all 0.3s ease-in-out;
+        max-width: 1rem; 
+        color: black;
+
 
         .dropdown-option {
-            border: 5px solid #f9f9f9;
+            transition: all 0.3s ease-in-out;
+            width: 9rem;
         }
     }
 }

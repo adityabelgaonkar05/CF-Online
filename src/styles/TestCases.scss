@@ -1,14 +1,60 @@
 .test-cases-container {
-    width: 100%;
     margin-left: 1rem;
+    width: 20%;
 
-    .output {
-        pre {
-            display: flex;
+    .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .input-box {
+        border-radius: 1rem;
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: center;
+
+        input {
+            width: 53%;
+            padding: 0.7rem;
+        }
+
+        button {
+            padding: 0.8rem;
+            background-color: #253745;
+            color: white;
+            border: none;
+            margin-left: 0.7rem;
         }
     }
 
     .test-cases-list {
-        background-color: #0B5A5E;
+        height: 94%;
+        background-color: #193449;
+        border-radius: 1rem;
+        padding: 0.1rem;
+
+        .test-case {
+            margin: 1rem;
+
+            img {
+                position: relative;
+                right: 0;
+            }
+        }
+
+        .input, .output {
+            border-radius: 1rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .output {
+            z-index: 1;
+            pre {
+                display: flex;
+            }
+        }
     }
 }

@@ -26,16 +26,18 @@ export default function TestCases({url, setUrl, cassesPassed, carryOutput} : {ur
 
     return (
         <div className="test-cases-container">
-            <input
-                type="text"
-                placeholder="Codeforces Question Link"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-            />
-            <button onClick={fetchTestCases}>Fetch Test Cases</button>
+            <div className="input-box">
+                <input
+                    type="text"
+                    placeholder="CF Question URL"
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                />
+                <button onClick={fetchTestCases}>Fetch!</button>
+            </div>
             <div className="test-cases-list">
                 {loading ? (
-                    <div>Loading...</div>
+                    <div className="loading">Loading...</div>
                 ) : (
                     testCases?.map((testCase, index) => (
                         <div key={index} className="test-case">
@@ -44,12 +46,12 @@ export default function TestCases({url, setUrl, cassesPassed, carryOutput} : {ur
                                 <pre>{testCase[0]}</pre>
                             </div>
                             { cassesPassed === 1 ? (
-                                <img src='/tickicon.png' alt="Passed" height={80} />
+                                <img src='/tickicon.png' alt="Passed" height={40} />
                             ) : cassesPassed === 2 ? (
                                 <div className="output">
                                     <h4>Output</h4>
                                     <pre>
-                                        <img src="/loadinggif.gif" alt="Loading" height={80} />
+                                        <img src="/loadinggif.gif" alt="Loading" height={40} />
                                     </pre>
                                 </div>
                             ) : (
