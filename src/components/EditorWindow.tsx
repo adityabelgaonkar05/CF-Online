@@ -163,7 +163,6 @@ export default function EditorWindow({ fileName, theme, url, setCasesPassed, car
                 defaultValue={file.value}
                 onMount={handleEditorDidMount}
             />
-            {output && <div className="output">{output}</div>}
         </div>
     );
 }
