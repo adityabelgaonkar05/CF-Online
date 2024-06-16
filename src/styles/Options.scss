@@ -1,4 +1,13 @@
 .options-container {
     height: 5vh;
     width: 100%;
+    padding-bottom: 1rem;
+
+    button {
+        padding: 0.7rem;
+        background-color: darkblue;
+        color: white;
+        border: none;
+        margin-right: 0.5rem;
+    }
 }
