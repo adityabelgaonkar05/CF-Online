@@ -107,6 +107,7 @@ export default function EditorWindow({ fileName, theme, url, setCasesPassed, car
         } catch (error) {
             console.error(error);
             setOutput('An error occurred while compiling the code.');
+            console.log(testCases);
         }
     }
     
