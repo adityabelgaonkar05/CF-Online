@@ -95,7 +95,7 @@ const files: Record<string, File> = {
     "script.py": {
         name: "script.py",
         language: "python",
-        value: "#Happy coding!"
+        value: "for _ range(int(input())):\n    "
 ,
     },
     "script.cpp": {
@@ -106,7 +106,7 @@ const files: Record<string, File> = {
     "script.java": {
         name: "script.java",
         language: "java",
-        value: "//Happy coding",
+        value: "import java.io.BufferedReader;\nimport java.io.IOException;\nimport java.io.InputStreamReader;\n\npublic class Main {\n\n\tpublic static String output = \"\";\n\n\tpublic static void main(String[] args) {\n\t\tBufferedReader br = new BufferedReader(new InputStreamReader(System.in));\n\t\tfinal int cases;\n\t\ttry {\n\t\t\tcases = Integer.parseInt(br.readLine().trim());\n\t\t\tSolver solver = new Solver();\n\t\t\tfor (int i = 0; i < cases; i++) {\n\t\t\t\tsolver.solve(br.readLine());\n\t\t\t}\n\t\t} catch (IOException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t\tSystem.out.println(output);\n\t}\n}\n\nclass Solver {\n\n\tpublic void solve(String input) {\n\t\tMain.output.concat(input);\n\t}\n}",
     },
 };
 
