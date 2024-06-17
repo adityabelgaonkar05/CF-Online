@@ -1,19 +1,22 @@
 .test-cases-container {
     margin-left: 1rem;
-    width: 20%;
+    height: fit-content;
+    width: 100%;
 
     .loading {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100%;
+        padding: 1rem;
     }
 
     .input-box {
         border-radius: 1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
         display: flex;
         justify-content: center;
+        align-items: center;
 
         input {
             width: 53%;
@@ -29,10 +32,17 @@
         }
     }
 
+    .failed-test-case, .passed-test-case {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        gap: 2rem;
+    }
+
     .test-cases-list {
-        height: 94%;
+        height: fit content;
         background-color: #193449;
-        border-radius: 1rem;
+        border-radius: 0.3rem;
         padding: 0.1rem;
 
         .test-case {
@@ -50,11 +60,23 @@
             margin-bottom: 1rem;
         }
 
-        .output {
+        .output, .run-to-see-output {
             z-index: 1;
             pre {
                 display: flex;
             }
         }
+
+        .run-to-see-output {
+            font-size: 1.5rem;
+        }
+    }
+
+    .no-test-cases {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        padding: 1rem;
     }
 }

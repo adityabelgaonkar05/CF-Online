@@ -193,7 +193,7 @@ export default function EditorWindow({ fileName, theme, url, setCasesPassed, car
         <div className='editor-window'>
             <button onClick={getEditorValue}>Compile</button>
             <Editor 
-                height="85vh" 
+                height="83vh" 
                 width="75vw" 
                 theme={theme} 
                 path={file.name}

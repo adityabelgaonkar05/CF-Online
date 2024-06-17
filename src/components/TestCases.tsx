@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/TestCases.scss";
 
-export default function TestCases({url, setUrl, cassesPassed, carryOutput} : {url: string, setUrl: (url: string) => void, cassesPassed: number, carryOutput: string}) {
+export default function TestCases({url, setUrl, cassesPassed, setCasesPassed, carryOutput} : {url: string, setUrl: (url: string) => void, cassesPassed: number, setCasesPassed: (casesPassed: number) => void, carryOutput: string}) {
     const [testCases, setTestCases] = useState<Array<[string, string]> | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -17,6 +17,7 @@ export default function TestCases({url, setUrl, cassesPassed, carryOutput} : {ur
             });
             const data = await response.json();
             setTestCases([[data.input, data.output]]);
+            setCasesPassed(3);
         } catch (error) {
             console.error('Error fetching test cases:', error);
         } finally {
@@ -38,7 +39,7 @@ export default function TestCases({url, setUrl, cassesPassed, carryOutput} : {ur
             <div className="test-cases-list">
                 {loading ? (
                     <div className="loading">Loading...</div>
-                ) : (
+                ) : testCases ? (
                     testCases?.map((testCase, index) => (
                         <div key={index} className="test-case">
                             <div className="input">
@@ -46,20 +47,25 @@ export default function TestCases({url, setUrl, cassesPassed, carryOutput} : {ur
                                 <pre>{testCase[0]}</pre>
                             </div>
                             { cassesPassed === 1 ? (
-                                <img src='/tickicon.png' alt="Passed" height={40} />
+                                <>
+                                <div className="passed-test-case"><h4>All Test Cases Passed</h4><img src='/tickicon.png' alt="Passed" height={20} /></div>
+                                </>
                             ) : cassesPassed === 2 ? (
                                 <div className="output">
                                     <h4>Output</h4>
                                     <pre>
-                                        <img src="/loadinggif.gif" alt="Loading" height={40} />
+                                        <img src="/loadinggif.gif" alt="Loading" height={20} />
                                     </pre>
+                                </div>
+                            ) : cassesPassed === 3 ? (
+                                <div className="run-to-see-output">
+                                    <h4>Run to see output</h4>
                                 </div>
                             ) : (
                                 <div className="output">
-                                    <h4>Output</h4>
+                                    <div className="failed-test-case"><h4>Output</h4><img src="/crossicon.png" alt="Failed" height={20} /></div>
                                     <pre>
                                         <span>{carryOutput}</span>
-                                        <img src="/crossicon.png" alt="Failed" height={40} />
                                     </pre>
                                 </div>
                             ) }
@@ -71,7 +77,9 @@ export default function TestCases({url, setUrl, cassesPassed, carryOutput} : {ur
                             </div>
                         </div>
                     ))
-                )}
+                ) : 
+                <div className="no-test-cases">No test cases to display</div>
+                }
             </div>
         </div>
     );

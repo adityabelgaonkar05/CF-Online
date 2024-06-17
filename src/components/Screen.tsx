@@ -16,8 +16,11 @@ function App() {
       <Options setFileName={setFileName} setTheme={setTheme} />
       <div className="content">
         <EditorWindow fileName={fileName} theme={theme} url={url} setCasesPassed={setCasesPassed} carryOverOutput={carryOverOutput} />
-        <TestCases url={url} setUrl={setUrl} cassesPassed={casesPassed} carryOutput={carryOutput} />
+        <TestCases url={url} setUrl={setUrl} cassesPassed={casesPassed} setCasesPassed={setCasesPassed} carryOutput={carryOutput} />
       </div>
+      <footer className="footer">
+        Made with ❤️ by <a href="https://github.com/adityabelgaonkar05">adityabelgaonkar05</a>
+      </footer>
     </>
   )
 }
