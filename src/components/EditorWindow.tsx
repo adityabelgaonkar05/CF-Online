@@ -95,7 +95,8 @@ const files: Record<string, File> = {
     "script.py": {
         name: "script.py",
         language: "python",
-        value: "for _ range(int(input())):\n    ",
+        value: "for _ in range(int(input())):\n    "
+,
     },
     "script.cpp": {
         name: "script.cpp",
