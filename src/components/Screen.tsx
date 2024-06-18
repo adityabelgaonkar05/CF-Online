@@ -35,7 +35,7 @@ function Screen() {
           />
       </div>
       <footer className="footer">
-        Made with ❤️ by <a href="https://github.com/adityabelgaonkar05">adityabelgaonkar05</a>
+        Made with ❤️ by <a href="https://github.com/adityabelgaonkar05" target='_blank'>adityabelgaonkar05</a>
       </footer>
     </>
   )
