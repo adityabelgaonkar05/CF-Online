@@ -95,7 +95,7 @@ const files: Record<string, File> = {
     "script.py": {
         name: "script.py",
         language: "python",
-        value: "for _ range(int(input())):\n    "
+        value: "for _ in range(int(input())):\n    "
 ,
     },
     "script.cpp": {
@@ -116,9 +116,11 @@ interface EditorWindowProps {
     url: string;
     setCasesPassed: (casesPassed: number) => void;
     carryOverOutput: (output: string) => void;
+    clickCompile: boolean;
+    setClickCompile: (clickCompile: boolean) => void;
 }
 
-export default function EditorWindow({ fileName, theme, url, setCasesPassed, carryOverOutput }: EditorWindowProps) {
+export default function EditorWindow({ fileName, theme, url, setCasesPassed, carryOverOutput, clickCompile, setClickCompile }: EditorWindowProps) {
     const file = files[fileName];
     const editorRef = useRef<any>(null);
     const [output, setOutput] = useState<string>('');
@@ -131,11 +133,11 @@ export default function EditorWindow({ fileName, theme, url, setCasesPassed, car
                 input: response.data["input"],
                 output: response.data["output"]
             };
-            setTestCases(fetchedTestCases); // Set the state for later use if needed
-            return fetchedTestCases; // Return the test cases for immediate use
+            setTestCases(fetchedTestCases); 
+            return fetchedTestCases; 
         } catch (error) {
             console.error('Error fetching test cases:', error);
-            throw error; // Throw an error to handle it in the calling function
+            throw error;
         }
     }
 
@@ -149,7 +151,7 @@ export default function EditorWindow({ fileName, theme, url, setCasesPassed, car
         setCasesPassed(2);
 
         try {
-            const currentTestCases = await fetchTestCases(url); // Fetch and use the test cases
+            const currentTestCases = await fetchTestCases(url);
 
             const data = new URLSearchParams({
                 code,
@@ -166,16 +168,11 @@ export default function EditorWindow({ fileName, theme, url, setCasesPassed, car
                 data: data.toString()
             };
 
-            console.log(data.toString());
-
             const response = await axios(config);
             const apiOutput = response.data.output.trim();
-            console.log(apiOutput);
             carryOverOutput(apiOutput);
             const formattedOutput = apiOutput.replace(/\\n/g, '\n');
             setOutput(formattedOutput);
-            console.log('Output from API:', apiOutput);
-            console.log(apiOutput === currentTestCases.output ? 'Test case passed' : 'Test case failed');
             if(apiOutput === currentTestCases.output) {
                 setCasesPassed(1);
             } else {
@@ -188,12 +185,16 @@ export default function EditorWindow({ fileName, theme, url, setCasesPassed, car
             console.log(output);
         }
     }
+
+    if(clickCompile) {
+        getEditorValue();
+        setClickCompile(false);
+    }
     
     return (
         <div className='editor-window'>
-            <button onClick={getEditorValue}>Compile</button>
             <Editor 
-                height="83vh" 
+                height="87vh" 
                 width="75vw" 
                 theme={theme} 
                 path={file.name}
