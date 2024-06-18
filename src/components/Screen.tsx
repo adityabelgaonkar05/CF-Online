@@ -14,6 +14,8 @@ function Screen() {
 
   return (
     <>
+    <div className='check-width'><span className='check-width-text'>Use in Landscape mode</span></div>
+      <img className='logo-cf' src='/logo-cf-online-ai.png' />
       <Options setFileName={setFileName} setTheme={setTheme} setClickCompile={setClickCompile} />
       <div className="content">
         <EditorWindow 

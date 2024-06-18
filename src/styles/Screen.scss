@@ -13,6 +13,31 @@ body {
     display: flex;
   }
 
+  .check-width {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    z-index: 69;
+    background: rgba(255, 255, 255, 0.4); /* Semi-transparent white */
+    backdrop-filter: blur(10px);
+    scale: 1.5;
+    display: none;
+
+    @media screen and (max-width: 666px) {
+      display: flex;
+    }
+  }
+
+  .logo-cf {
+    position: fixed;
+    top: 0.7%;
+    right: 0.7%;
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
   .footer {
     bottom: 0;
     padding: 0.5rem;
