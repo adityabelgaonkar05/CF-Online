@@ -6,12 +6,14 @@
     font-weight: 500;
 
     button {
-        padding: 0.7rem;
-        background-color: darkblue;
+        height: 3rem;
+        width: 9rem;
+        padding: 0.8rem;
+        background-color: #253745;
         color: white;
         border: none;
-        margin-right: 0.5rem;
+        margin-right: 0.7rem;
+        border-radius: 0.2rem;
+        cursor: pointer;
     }
-
-    
 }
