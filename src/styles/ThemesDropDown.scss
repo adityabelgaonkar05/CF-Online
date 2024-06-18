@@ -4,8 +4,9 @@
     
     .dropbtn {
         border-radius: 3px;
-        min-width: 9rem;
+        min-width: 10rem;
         background-color: #253745;
+        cursor: pointer;
     }
 
     .dropdown-content-hidden { 
@@ -23,6 +24,7 @@
         transition: all 0.3s ease-in-out;
         max-width: 1rem; 
         color: black;
+        cursor: pointer;
 
 
         .dropdown-option {

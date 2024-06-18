@@ -5,6 +5,7 @@
     .dropbtn {
         border-radius: 3px;
         min-width: 5rem;
+        cursor: pointer;
     }
 
     .dropdown-content-hidden { 
@@ -19,6 +20,7 @@
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
+        cursor: pointer;
 
         .dropdown-option {
             border: 5px solid #f9f9f9;
