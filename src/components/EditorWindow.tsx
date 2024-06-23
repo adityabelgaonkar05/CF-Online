@@ -101,7 +101,7 @@ const files: Record<string, File> = {
     "script.cpp": {
         name: "script.cpp",
         language: "cpp",
-        value: "#include <bits/stdc++.h>\n#define int long long\nusing namespace std;\n\nsigned main() \n{\n    int t; cin >> t;\n    while(t--)\n    {\n        \n    }    return 0;\n}\n",
+        value: "#include <bits/stdc++.h>\n#define int long long\nusing namespace std;\n\nsigned main() \n{\n    int t; cin >> t;\n    while(t--)\n    {\n        \n    }\n    return 0;\n}\n",
     },
     "script.java": {
         name: "script.java",
